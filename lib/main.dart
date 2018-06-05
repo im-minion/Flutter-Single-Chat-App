@@ -9,7 +9,7 @@ import 'package:firebase_database/ui/firebase_animated_list.dart';
 
 void main() => runApp(new MyApp());
 final reference = FirebaseDatabase.instance.reference().child('users');
-
+String userEmail,userID;
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -54,6 +54,8 @@ class _MyHomePageState extends State<MyHomePage> {
         print(user.uid);
         print(user.displayName);
         print(user.photoUrl);
+        userEmail = user.email;
+        userID = user.uid;
         loggedIn = true;
       } else {
         print("not cool");
@@ -346,7 +348,8 @@ class _MyHomePageState extends State<MyHomePage> {
               reverse: false,
               itemBuilder: (_, DataSnapshot snapshot,
                   Animation<double> animation, int index) {
-                return new ChatUserRow(snapshot);
+
+                return new ChatUserRow(snapshot,userEmail,userID);
               },
             ),
             new Divider(height: 1.0),
