@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter_single_chat_app/ChatScreen.dart';
 
 class ChatUserRow extends StatelessWidget {
   final DataSnapshot snapshot;
@@ -22,9 +23,12 @@ class ChatUserRow extends StatelessWidget {
             style: new TextStyle(fontSize: 18.0),
           ),
           onTap: () {
-            Scaffold
-                .of(context)
-                .showSnackBar(new SnackBar(content: new Text(snapshot.value)));
+            Navigator.of(context).push(new MaterialPageRoute(
+                builder: (BuildContext context) =>
+                    new ChatScreen(snapshot.value.toString())));
+//            Scaffold
+//                .of(context)
+//                .showSnackBar(new SnackBar(content: new Text(snapshot.value)));
           },
         ),
       ),

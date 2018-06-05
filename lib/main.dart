@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_single_chat_app/ChatScreen.dart';
 import 'package:flutter_single_chat_app/ChatUsersRow.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -17,7 +18,10 @@ class MyApp extends StatelessWidget {
       theme: new ThemeData(
         primarySwatch: Colors.pink,
       ),
-      home: new MyHomePage(),
+      routes: <String, WidgetBuilder>{
+        '/': (BuildContext context) => new MyHomePage(),
+      },
+      //home: new MyHomePage(),
     );
   }
 }
