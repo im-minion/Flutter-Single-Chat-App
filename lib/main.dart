@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_single_chat_app/ChatUsersRow.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
@@ -341,7 +342,7 @@ class _MyHomePageState extends State<MyHomePage> {
               reverse: false,
               itemBuilder: (_, DataSnapshot snapshot,
                   Animation<double> animation, int index) {
-                return new Text(snapshot.value);
+                return new ChatUserRow(snapshot);
               },
             ),
             new Divider(height: 1.0),
