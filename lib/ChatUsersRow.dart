@@ -26,7 +26,7 @@ class ChatUserRow extends StatelessWidget {
           onTap: () {
             Navigator.of(context).push(new MaterialPageRoute(
                 builder: (BuildContext context) =>
-                    new ChatScreen(snapshot.value.toString())));
+                    new ChatScreen(snapshot.value.toString(),userEmail,userId)));
 //            Scaffold
 //                .of(context)
 //                .showSnackBar(new SnackBar(content: new Text(snapshot.value)));
