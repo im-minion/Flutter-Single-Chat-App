@@ -1,9 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_single_chat_app/ChatScreen.dart';
 import 'package:flutter_single_chat_app/ChatUsersRow.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 
@@ -50,10 +48,10 @@ class _MyHomePageState extends State<MyHomePage> {
     this.setState(() {
       if (user != null) {
         print("cool");
-        print(user.email);
-        print(user.uid);
-        print(user.displayName);
-        print(user.photoUrl);
+//        print(user.email);
+//        print(user.uid);
+//        print(user.displayName);
+//        print(user.photoUrl);
         userEmail = user.email;
         userID = user.uid;
         loggedIn = true;
