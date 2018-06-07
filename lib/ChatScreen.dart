@@ -1,50 +1,81 @@
 import 'dart:async';
-
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:flutter_single_chat_app/main.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 
-DatabaseReference chatReference =
-    FirebaseDatabase.instance.reference().child('chat');
-DatabaseReference userReference =
-    FirebaseDatabase.instance.reference().child('users');
+DatabaseReference chatDBReference =
+FirebaseDatabase.instance.reference().child('chat');
+DatabaseReference userDBReference =
+FirebaseDatabase.instance.reference().child('users');
 
-final reference = FirebaseDatabase.instance.reference();
+final Creference = FirebaseDatabase.instance.reference().child('chat');
+final Ureference = FirebaseDatabase.instance.reference().child('users');
 
-String message, secondUserId;
+DatabaseReference mesageReference;
+
+String message;
 bool type = false;
 
 class ChatScreen extends StatefulWidget {
   final String _clickedEmailId;
   final String userEmail, userId;
+  final String secondUserId;
 
-  ChatScreen(this._clickedEmailId, this.userEmail, this.userId);
+  ChatScreen(this._clickedEmailId, this.userEmail, this.userId,
+      this.secondUserId);
 
   @override
   ChatScreenState createState() =>
-      new ChatScreenState(_clickedEmailId, userEmail, userId);
+      new ChatScreenState(_clickedEmailId, userEmail, userId, secondUserId);
 }
 
 class ChatScreenState extends State<ChatScreen> {
   final String _clickedEmailId;
   final String userEmail, userId;
+  final String secondUserId;
 
-  ChatScreenState(this._clickedEmailId, this.userEmail, this.userId);
+  ChatScreenState(this._clickedEmailId, this.userEmail, this.userId,
+      this.secondUserId);
+
+  Future<Null> _function() async {
+//TODO; find wich child exist A_B or B_A
+//    print(userId);
+//    print(secondUserId);
 //
-//  Future<Null> _function() async {
-//    var ref = FirebaseDatabase.instance.reference().child('users');
-//    // print(ref.toString());
+//    String key = await FirebaseDatabase.instance
+//        .reference()
+//        .child("chat")
+//        .child(userId + "_" + secondUserId)
+//        .key;
+//    print(key);
+
+//        .once()
+//        .then((DataSnapshot snapshot) async {
 //
-//    this.setState(() {});
-//  }
+//      StreamSubscription<Event> subscription = FirebaseDatabase.instance
+//          .reference()
+//          .child(userId + "_" + secondUserId)
+//          .onValue
+//          .listen((Event event) {
 //
-//  @override
-//  void initState() {
-//    super.initState();
-//    _function();
-//  }
+//      });
+
+//    });
+//    FirebaseAnimatedList list = new FirebaseAnimatedList(
+//        query: FirebaseDatabase.instance.reference().child("users"),
+//        itemBuilder:
+//            (_, DataSnapshot snapshot, Animation<double> animation, int index) {
+//          this.setState(() {
+//
+//          });
+//        });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _function();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,17 +86,17 @@ class ChatScreenState extends State<ChatScreen> {
             title: new Text(_clickedEmailId),
           ),
           body: new Stack(alignment: Alignment.bottomRight, children: <Widget>[
-            new FirebaseAnimatedList(
-              query: reference,
-              sort: (a, b) => b.key.compareTo(a.key),
-              padding: new EdgeInsets.all(8.0),
-              reverse: false,
-              itemBuilder: (_, DataSnapshot snapshot,
-                  Animation<double> animation, int index) {
-                print(snapshot.key);
-                return new ChatMessageRow(message, type);
-              },
-            )
+//            new FirebaseAnimatedList(
+//              query: reference,
+//              sort: (a, b) => b.key.compareTo(a.key),
+//              padding: new EdgeInsets.all(8.0),
+//              reverse: false,
+//              itemBuilder: (_, DataSnapshot snapshot,
+//                  Animation<double> animation, int index) {
+//                print(snapshot.key);
+//                return new ChatMessageRow(message, type);
+//              },
+//            )
           ]),
         ));
   }

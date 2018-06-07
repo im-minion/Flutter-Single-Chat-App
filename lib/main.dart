@@ -132,6 +132,11 @@ class _MyHomePageState extends State<MyHomePage> {
     this.setState(() {
       loggedIn = false;
       _signupClicked = false;
+      _clicked = false;
+      _emailControllerlogin.clear();
+      _passwordControllerlogin.clear();
+      _emailControllersignup.clear();
+      _passwordControllersignup.clear();
     });
   }
 
